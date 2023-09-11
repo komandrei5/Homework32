@@ -3,7 +3,11 @@ package com.home.student;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateSession {
+public class HibernateSession implements AutoCloseable {
+    @Override
+    public void close() throws Exception {
+        getSessionFactory().close();
+    }
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
